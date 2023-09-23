@@ -45,14 +45,17 @@ export const AddRequestDialogComponent = () => {
 
     function addNewRequest(){
         const largestRequestId = getLargestRequestId(nodes)
+        let tempRequestId = largestRequestId
 
         if(requestId > largestRequestId){
             dispatch(incrementRequestId())
+            tempRequestId = requestId
         } else {
             dispatch(setRequestId({ value: largestRequestId + 1 }))
+            tempRequestId++
         }
 
-        dispatch(addRequest({ requestId: requestId, from: id, to: selectedId, value: value }))
+        dispatch(addRequest({ requestId: tempRequestId, from: id, to: selectedId, value: value }))
         closeDialog()
     }
 
@@ -66,7 +69,7 @@ export const AddRequestDialogComponent = () => {
             <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
                 <Dialog.Panel className="w-full max-w-sm rounded-xl bg-white p-2 grid gap-3">
                     <Dialog.Title className="text-center">
-                        Create Request
+                        Add Request
                     </Dialog.Title>
 
                     <div className="flex flex-col px-3 transition-colors focus-within:text-blue-700">
@@ -103,14 +106,14 @@ export const AddRequestDialogComponent = () => {
                             className="col-span-1 p-1 rounded-xl bg-green-600 transition-colors hover:bg-green-800 disabled:bg-gray-500 disabled:cursor-not-allowed" 
                             onClick={addNewRequest}
                         >
-                            Create Request
+                            Add Request
                         </button>
                         <button 
                             className="col-span-1 p-1 rounded-xl bg-red-600 transition-colors hover:bg-red-800" 
                             onClick={closeDialog}
                         >
                             Cancel
-                        </button>                       
+                        </button>                   
                     </div>
                 </Dialog.Panel>
             </div>

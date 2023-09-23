@@ -1,64 +1,67 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import INode from "../../interfaces/INode";
 import { findNodeElementById } from "../../services/nodeService";
+import { RequestStatusType } from "../../interfaces/RequestStatus";
+import { changeRequestDescription, changeRequestStatus } from "../../services/requestService";
 
-//TODO: Will be null when finished
-const initialState: INode[] = [
+const localStorageJSON = localStorage.getItem("nodes")
+
+const tempNodes: INode[] = [
     { 
       id: 1,
-      name: "0",
+      name: "Name 1",
       value: 1,
       children: [],
       requests: []
     },    
     {  
       id: 2,
-      name: "asd",
+      name: "Name 2",
       value: 999,
       children: [],
       requests: []
     },
     {
       id: 3,
-      name: "1",
+      name: "Name 3",
       value: 300,
       children: [
         {
           id: 4,
-          name: "2",
+          name: "Name 4",
           value: 500,
           children: [],
           requests: []
         },
         {
           id: 5,
-          name: "3",
+          name: "Name 5",
           value: 200,
           children: [],
           requests: []
         },
         {
           id: 6,
-          name: "4",
+          name: "Name 6",
           value: 400,
           children: [
             {
               id: 7,
-              name: "5",
+              name: "Name 7",
               value: 100,
               children: [],
               requests: []
             },
             {
               id: 8,
-              name: "6",
+              name: "Name 8",
               value: 200,
               children: [],
               requests: []
             },
             {
               id: 9,
-              name: "xd",
+              name: "Name 9",
               value: 200,
               children: [],
               requests: []
@@ -70,6 +73,8 @@ const initialState: INode[] = [
       requests: []
     }
 ]
+
+const initialState: INode[] = localStorageJSON ? JSON.parse(localStorageJSON) : tempNodes 
 
 type AddAction = {
   id: number,
@@ -88,6 +93,17 @@ type AddRequestAction = {
   from: number, //id
   to: number, //id
   value: number
+}
+
+type UpdateRequestAction = {
+  requestId: number,
+  value: number,
+  status: RequestStatusType,
+}
+
+type UpdateRequestDescription = {
+  requestId: number,
+  description: string
 }
 
 const nodesSlice = createSlice({
@@ -175,6 +191,16 @@ const nodesSlice = createSlice({
           status: "PENDING"
         })
       }
+    },
+    updateRequest(state, action: PayloadAction<UpdateRequestAction>){
+      const { requestId, value, status } = action.payload
+
+      state = [...changeRequestStatus(state, requestId, value, status)]
+    },
+    updateRequestDescription(state, action: PayloadAction<UpdateRequestDescription>){
+      const { requestId, description } = action.payload
+
+      state = [...changeRequestDescription(state, requestId, description)]
     }
   }
 })
@@ -183,7 +209,9 @@ export const {
   updateNode,
   addNode,
   deleteNode,
-  addRequest
+  addRequest,
+  updateRequest,
+  updateRequestDescription
 } = nodesSlice.actions
 
 export default nodesSlice.reducer

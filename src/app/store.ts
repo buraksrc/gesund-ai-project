@@ -7,7 +7,7 @@ import {
 import nodesReducer from '../features/nodes/nodeSlice';
 import idReducer from "../features/nodes/idSlice"; 
 import dialogReducer from "../features/nodes/dialogSlice"; 
-import requestNodeIdReducer from "../features/nodes/requestIdSlice"; 
+import requestNodeIdReducer from "../features/nodes/requestNodeIdSlice"; 
 
 export const store = configureStore({
   reducer: {

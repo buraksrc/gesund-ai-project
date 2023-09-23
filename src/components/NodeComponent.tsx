@@ -3,6 +3,9 @@ import { useAppDispatch } from "../app/hooks";
 import { updateNode } from "../features/nodes/nodeSlice";
 import Xarrow, {useXarrow} from "react-xarrows";
 import { NodeContextMenu } from "./NodeContextMenuComponent";
+import { ExclamationCircleIcon, XCircleIcon } from "@heroicons/react/20/solid";
+import { set } from "../features/nodes/requestNodeIdSlice";
+import { handleRequestLogDialog } from "../features/nodes/dialogSlice";
 
 //Renders nodes with recursion
 //React flow is better in real scenarios but this will do
@@ -18,6 +21,11 @@ export const NodeComponent = ({data, parentId = -1}: {data: INode[], parentId?: 
 
     function onNameChanged(name: string, id: number){
         dispatch(updateNode({ id: id, name: name, type: "NAME" }))
+    }    
+    
+    function openRequestLogDialog(id: number){
+      dispatch(set({ id: id }))
+      dispatch(handleRequestLogDialog({ open: true }))     
     }
 
     //Gets total values of children by recursion
@@ -62,8 +70,26 @@ export const NodeComponent = ({data, parentId = -1}: {data: INode[], parentId?: 
                                 <span className="px-2 text-red-600 font-bold">{item.value + getTotal(item.children)}</span>
                             </div>
                         </div>
-                        <div className="self-center">
-                            <NodeContextMenu id={item.id} parentId={parentId} /> 
+                        <div className="flex flex-col gap-2">
+                            {(item.requests.filter(e => e.type == "INCOMING" && e.status == "PENDING").length > 0) && (
+                                <div onClick={() => openRequestLogDialog(item.id)} className="text-purple-600 flex items-center gap-1 cursor-pointer">
+                                    <ExclamationCircleIcon className="w-4 h-4"/>
+                                    <span>
+                                        {item.requests.filter(e => e.type == "INCOMING" && e.status == "PENDING").length}
+                                    </span>
+                                </div>
+                            )}                            
+                            {(item.requests.filter(e => e.type == "OUTGOING" && e.status == "REJECTED").length > 0) && (
+                                <div onClick={() => openRequestLogDialog(item.id)} className="text-red-600 flex items-center gap-1 cursor-pointer">
+                                    <XCircleIcon className="w-4 h-4"/>
+                                    <span>
+                                        {item.requests.filter(e => e.type == "OUTGOING" && e.status == "REJECTED").length}                               
+                                    </span>
+                                </div>
+                            )}
+                            <div className="self-end mt-auto">
+                                <NodeContextMenu id={item.id} parentId={parentId} /> 
+                            </div>
                         </div>
                     </div>
                 </div>  

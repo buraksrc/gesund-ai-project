@@ -23,14 +23,17 @@ export const AddNodeDialogComponent = () => {
 
     function addNewNode(){
         const largestIdInNodes = getLargestNodeId(nodes)
+        let tempId = largestIdInNodes
 
         if(largestId > largestIdInNodes){
             dispatch(incrementId())
+            tempId = largestId
         } else {
             dispatch(setId({ value: largestIdInNodes + 1 }))
+            tempId++
         }
 
-        dispatch(addNode({ id: largestId, parentId: selectedId, name: name, value: value }))
+        dispatch(addNode({ id: tempId, parentId: selectedId, name: name, value: value }))
         closeDialog()
     }
 
