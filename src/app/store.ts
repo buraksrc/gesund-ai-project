@@ -1,7 +1,20 @@
-import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit"
+import { 
+  configureStore, 
+  ThunkAction, 
+  Action 
+} from "@reduxjs/toolkit"
+
+import nodesReducer from '../features/nodes/nodeSlice';
+import idReducer from "../features/nodes/idSlice"; 
+import dialogReducer from "../features/nodes/dialogSlice"; 
+import requestNodeIdReducer from "../features/nodes/requestIdSlice"; 
 
 export const store = configureStore({
   reducer: {
+    nodes: nodesReducer,
+    id: idReducer,
+    dialog: dialogReducer,
+    requestNodeId: requestNodeIdReducer
   },
 })
 
