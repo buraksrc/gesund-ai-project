@@ -31,6 +31,9 @@ function App() {
       <nav className="flex min-h-[5vh] px-5 py-3 gap-10 bg-black text-white sticky top-0">
         <button onClick={() => dispatch(handleAddDialog({ open: true }))} className="bg-green-600 px-3 w-20 rounded-xl sticky left-0 transition-colors hover:bg-green-800">Add</button>
         <button onClick={saveNodesToLocalStorage} className="bg-blue-600 px-3 w-20 rounded-xl sticky left-32 transition-colors hover:bg-blue-800">Save</button>
+        <a target="_" className="sticky top-0 right-5 ml-auto" href="https://github.com/buraksrc/gesund-ai-project">
+          GitHub
+        </a>
       </nav>
       <div className="min-h-[100vh] w-auto p-10 grow">
         <Xwrapper>
