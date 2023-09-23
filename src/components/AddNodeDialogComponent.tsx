@@ -1,6 +1,6 @@
 import { Dialog } from '@headlessui/react'
 import { useAppSelector, useAppDispatch } from "../app/hooks";
-import { handleAddDialog } from '../features/nodes/dialogSlice';
+import { handleAddDialog } from '../features/dialog/dialogSlice';
 import { useState } from 'react';
 import { setId, incrementId } from '../features/nodes/idSlice';
 import { addNode } from '../features/nodes/nodeSlice';

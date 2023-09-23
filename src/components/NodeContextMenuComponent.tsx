@@ -11,7 +11,7 @@ import { deleteNode } from '../features/nodes/nodeSlice'
 import { 
   handleAddRequestDialog,
   handleRequestLogDialog
-} from '../features/nodes/dialogSlice'
+} from '../features/dialog/dialogSlice'
 import { set } from '../features/nodes/requestNodeIdSlice'
 
 export const NodeContextMenu = ({ id, parentId } : { id: number, parentId: number }) => {

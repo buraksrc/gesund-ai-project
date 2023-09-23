@@ -3,7 +3,7 @@ import {
     useAppSelector, 
     useAppDispatch 
 } from "../app/hooks";
-import { handleRequestLogDialog } from '../features/nodes/dialogSlice';
+import { handleRequestLogDialog } from '../features/dialog/dialogSlice';
 import { findNodeElementById } from '../services/nodeService';
 import { 
     updateRequest, 

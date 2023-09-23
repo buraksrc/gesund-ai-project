@@ -3,7 +3,7 @@ import { AddNodeDialogComponent } from "./components/AddNodeDialogComponent";
 import { AddRequestDialogComponent } from "./components/AddRequestDialogComponent";
 import { RequestLogDialogComponent } from "./components/RequestLogDialogComponent";
 import { NodeComponent } from "./components/NodeComponent";
-import { handleAddDialog } from "./features/nodes/dialogSlice";
+import { handleAddDialog } from "./features/dialog/dialogSlice";
 import { Xwrapper } from "react-xarrows";
 import { useState } from "react";
 import { XCircleIcon } from "@heroicons/react/20/solid";

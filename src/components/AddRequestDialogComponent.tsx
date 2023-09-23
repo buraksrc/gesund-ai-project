@@ -1,6 +1,6 @@
 import { Dialog } from '@headlessui/react'
 import { useAppSelector, useAppDispatch } from "../app/hooks";
-import { handleAddRequestDialog } from '../features/nodes/dialogSlice';
+import { handleAddRequestDialog } from '../features/dialog/dialogSlice';
 import { useState } from 'react';
 import { flattenNodes } from '../services/nodeService';
 import { getLargestRequestId } from '../services/requestService';

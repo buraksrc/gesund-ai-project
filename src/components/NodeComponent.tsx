@@ -5,7 +5,7 @@ import Xarrow, {useXarrow} from "react-xarrows";
 import { NodeContextMenu } from "./NodeContextMenuComponent";
 import { ExclamationCircleIcon, XCircleIcon } from "@heroicons/react/20/solid";
 import { set } from "../features/nodes/requestNodeIdSlice";
-import { handleRequestLogDialog } from "../features/nodes/dialogSlice";
+import { handleRequestLogDialog } from "../features/dialog/dialogSlice";
 
 //Renders nodes with recursion
 //React flow is better in real scenarios but this will do
