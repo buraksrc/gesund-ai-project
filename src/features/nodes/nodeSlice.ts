@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import INode from "../../interfaces/INode";
 import { findNodeElementById } from "../../services/nodeService";
 import { RequestStatusType } from "../../interfaces/RequestStatus";
-import { changeRequestDescription, changeRequestStatus } from "../../services/requestService";
+import { changeRequestDescription, changeRequestStatus, removeUnusedRequests } from "../../services/requestService";
 
 const localStorageJSON = localStorage.getItem("nodes")
 
@@ -157,6 +157,8 @@ const nodesSlice = createSlice({
 
         state.splice(element, 1)
 
+        state = [...removeUnusedRequests(state, id)]
+
         return
       }
 
@@ -166,6 +168,8 @@ const nodesSlice = createSlice({
         const child = parentElement.children.findIndex(c => c.id == id)
 
         parentElement.children.splice(child, 1)
+        
+        state = [...removeUnusedRequests(state, id)]
       }
     },
     addRequest(state, action: PayloadAction<AddRequestAction>){

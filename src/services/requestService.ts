@@ -74,8 +74,23 @@ function changeRequestDescription(nodes: INode[], requestId: number, description
     return newNodes
 }
 
+function removeUnusedRequests(nodes: INode[], nodeId: number): INode[]{
+    let newNodes = [...nodes]
+
+    for(const item of newNodes){
+        item.requests = item.requests.filter(e => e.requestNodeId !== nodeId)
+
+        if(item.children.length > 0){
+            item.children = removeUnusedRequests(item.children, nodeId)
+        }
+    }
+
+    return newNodes
+}
+
 export {
     getLargestRequestId,
     changeRequestStatus,
-    changeRequestDescription
+    changeRequestDescription,
+    removeUnusedRequests
 }
