@@ -1,27 +1,20 @@
-# vite-template-redux
+## Description
+A project I made with TypeScript, React.js, Redux and Tailwind CSS. You can add nodes, delete nodes, change their names and values, pass values between them and save the nodes to Local Storage. Layout will automatically expand as trees grow. 
 
-Uses [Vite](https://vitejs.dev/), [Vitest](https://vitest.dev/), and [React Testing Library](https://github.com/testing-library/react-testing-library) to create a modern [React](https://react.dev/) app compatible with [Create React App](https://create-react-app.dev/)
+## UI Libraries
+I also used Heroicons for icons, Headless UI for dialog and dropdown components and react-xarrows for drawing lines between nodes. Rest are made with classic HTML components and Tailwind CSS.
 
-```sh
-npx degit reduxjs/redux-templates/packages/vite-template-redux my-app
+## Notes
+I've tried to use Redux whenever possible, but for managing internal states (ex: dialog) I've used useState hook instead. My main rule was not to use useEffect hook at all and pay attention if I am duplicating the code and convert them to components or functions.\
+I wanted to write tests but due to schedule I couldn't write any.
+
+## Running
+It is a simple node application so 
+
+```
+npm i && npm run dev
 ```
 
-## Goals
+will suffice.
 
-- Easy migration from Create React App or Vite
-- As beginner friendly as Create React App
-- Optimized performance compared to Create React App
-- Customizable without ejecting
 
-## Scripts
-
-- `dev`/`start` - start dev server and open browser
-- `build` - build for production
-- `preview` - locally preview production build
-- `test` - launch test runner
-
-## Inspiration
-
-- [Create React App](https://github.com/facebook/create-react-app/tree/main/packages/cra-template)
-- [Vite](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react)
-- [Vitest](https://github.com/vitest-dev/vitest/tree/main/examples/react-testing-lib)
